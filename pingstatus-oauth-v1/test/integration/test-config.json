@@ -1,0 +1,15 @@
+{
+    "apiconfig": {
+        "domain": "API_NORTHBOUND_DOMAIN",
+        "basepath": "/pingstatus-oauth/v1",
+        "apiproxy": "pingstatus-oauth-v1",
+		"oauthDomain": "OAUTH_DOMAIN",
+        "oauthBasepath": "OAUTH_BASEPATH",
+        "userUsername" : "REPLACE_USERNAME",
+        "userPassword" : "REPLACE_PASSWORD",
+        "product":"pingstatus-oauth-v1-product-APIGEE_ENVIRONMENT",
+        "app":"pingstatus-oauth-v1-app-migration-APIGEE_ENVIRONMENT",
+        "edgeOauthDomain": "EDGE_OAUTH_DOMAIN",
+        "edgeOauthBasepath": "EDGE_OAUTH_BASEPATH"
+    }
+}
