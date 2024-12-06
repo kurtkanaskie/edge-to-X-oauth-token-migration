@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 async="false" continueOnError="false" enabled="true" name="OA-GenerateExternalAccessToken">
+    <Operation>GenerateAccessToken</Operation>
+    <Attributes>
+        <Attribute name="externalAccessToken" ref="externalAccessToken" display="true"/>
+        <Attribute name="externalUsername" ref="externalUsername" display="true"/>
+        <Attribute name="externalPassword" ref="externalPassword" display="false"/>
+    </Attributes>
+    <GenerateResponse enabled="false"/>
+    <GenerateErrorResponse enabled="false"/>
+    <ExternalAuthorization>true</ExternalAuthorization>
+    <StoreToken>true</StoreToken>
+    <ExternalAccessToken>access_token</ExternalAccessToken>
+    <ExpiresIn ref="expires_in_ms">60000</ExpiresIn>
+    <ExternalRefreshToken>refresh_token</ExternalRefreshToken>
+    <RefreshTokenExpiresIn ref="refresh_expires_in_ms">600000</RefreshTokenExpiresIn>
+    <ReuseRefreshToken>false</ReuseRefreshToken>
+    <SupportedGrantTypes>
+        <GrantType>password</GrantType>
+    </SupportedGrantTypes>
+</OAuthV2>

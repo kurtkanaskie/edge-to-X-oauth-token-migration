@@ -1,0 +1,14 @@
+{
+  "name": "adopt-oauth-token-v1",
+  "version": "1.0.0",
+  "description": "Shared flow to adopt Edge OAuth tokens in X",
+  "license": "SEE LICENSE IN LICENSE",
+  "scripts": {
+    "apigeelint": "node ./node_modules/apigeelint/cli.js -s ./sharedflowbundle -e ST003 --profile apigeex -f table"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^7.3.0",
+    "apickli": "^3.0.1",
+    "apigeelint": "^2.x"
+  }
+}

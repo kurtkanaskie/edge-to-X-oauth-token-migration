@@ -1,0 +1,26 @@
+<SharedFlowBundle revision="24" name="adopt-oauth-token-v1">
+    <DisplayName>external-oauth-token</DisplayName>
+    <Description>Validate token from Edge</Description>
+    <CreatedAt>1732657586549</CreatedAt>
+    <LastModifiedAt>1732657803184</LastModifiedAt>
+    <Policies>
+        <Policy>EV-TokenResponse</Policy>
+        <Policy>AM-RestoreRequest</Policy>
+        <Policy>EV-AccessToken</Policy>
+        <Policy>JS-SetExpiresIn</Policy>
+        <Policy>OA-GenerateExternalAccessToken</Policy>
+        <Policy>AM-SaveRequest</Policy>
+        <Policy>RF-InvalidToken</Policy>
+        <Policy>SC-ValidateToken</Policy>
+        <Policy>OA-VerifyAccessToken</Policy>
+        <Policy>RF-TokenExpired</Policy>
+        <Policy>AM-ExternalOAuthRequest</Policy>
+    </Policies>
+    <Resources>
+        <Resource>jsc://JS-SetExpiresIn.js</Resource>
+    </Resources>
+    <SharedFlows>
+        <SharedFlow>default</SharedFlow>
+    </SharedFlows>
+    <subType>SharedFlow</subType>
+</SharedFlowBundle>

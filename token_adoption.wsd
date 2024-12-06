@@ -1,0 +1,60 @@
+Title Password Grant with external IdP Mock Token Adoption
+
+participant Client as C
+participant Apigee Edge\noauth-v1 API as E
+participant Identity Provider\nidp-v1-mock API as I
+participant Apigee Edge Protected\npingstatus-oauth-v1 API as EAP
+participant Apigee X\noauth-v1 API as X
+participant Apigee X Protected\npingstatus-oauth-v1 API as XAP
+participant Backend\npingstatus-v1-mock API as B
+
+alt get access_token
+C->E: POST /oauth/v1/token - password grant
+E->E: Verify API Keys
+E->E: KVM get IdP config
+E->I: Service Callout POST /idp-v1-mock/token - password grant
+I-->E: 200 OK - access token response
+E->E: Create access_token - custom attributes external token
+E-->C: 200 OK - access_token
+end
+
+alt Access Protected Edge Resource
+C->EAP: GET /pingstatus-oauth/v1/status - access_token
+EAP->EAP: Verify access_token
+alt invalid or expired
+EAP-->C: 401 Unauthorized - invalid or expired token
+end
+
+EAP->EAP: Extract external_access_token
+EAP-->B: GET /pingstatus-v1-mock/healthcheck \n external_access_token
+EAP-->C: 200 OK - response details
+end
+
+alt Access Protected X Resource
+C->XAP: GET /pingstatus-oauth/v1/status - access_token
+alt Shared Flow adopt-oauth-token-v1 
+XAP->XAP: Verify access_token
+else expired
+XAP-->C: 401 Unauthorized - expired token
+
+else unknown token
+XAP-->E: Validate token unknown token
+E-->XAP: 401 invalid or expired token
+XAP-->C: 401 invalid or expired token
+else valid token
+E-->XAP: 200 - valid token
+end
+
+XAP->XAP: Verify access_token
+
+XAP->XAP: Extract external_access_token
+XAP-->B: GET /pingstatus-v1-mock/healthcheck \n external_access_token
+XAP-->C: 200 OK - response details
+
+alt Refresh Token in X using Edge token
+C-->X: POST /oauth/v1/token - refresh grant
+X->X: Verify API Keys
+X->X: Create access_token - custom attributes external token
+X-->C: 200 OK - access_token
+
+end

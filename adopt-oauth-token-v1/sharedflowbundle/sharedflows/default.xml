@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SharedFlow name="default">
+    <Step>
+        <Name>OA-VerifyAccessToken</Name>
+    </Step>
+    <!-- 
+        oauthV2.OA-VerifyAccessToken.fault.name == keymanagement.service.invalid_access_token
+            not seen before
+            validate with external Idp
+            if valid assign as apigee token
+        oauthV2.OA-VerifyAccessToken.fault.name == keymanagement.service.access_token_expired
+            token esists but expired
+            raise fault and make the app get another token
+    -->
+    <Step>
+        <Condition>oauthV2.OA-VerifyAccessToken.fault.name == "keymanagement.service.access_token_expired"</Condition>
+        <Name>RF-TokenExpired</Name>
+    </Step>
+    <Step>
+        <Condition>oauthV2.OA-VerifyAccessToken.fault.name == "keymanagement.service.invalid_access_token"</Condition>
+        <Name>EV-AccessToken</Name>
+    </Step>
+    <Step>
+        <Condition>oauthV2.OA-VerifyAccessToken.fault.name == "keymanagement.service.invalid_access_token"</Condition>
+        <Name>SC-ValidateToken</Name>
+    </Step>
+    <Step>
+        <Condition>servicecallout.SC-ValidateToken.failed == true</Condition>
+        <Name>RF-InvalidToken</Name>
+    </Step>
+    <Step>
+        <Condition>oauthV2.OA-VerifyAccessToken.fault.name == "keymanagement.service.invalid_access_token"</Condition>
+        <Name>EV-TokenResponse</Name>
+    </Step>
+    <Step>
+        <Name>JS-SetExpiresIn</Name>
+    </Step>
+    <Step>
+        <Condition>oauthV2.OA-VerifyAccessToken.fault.name == "keymanagement.service.invalid_access_token"</Condition>
+        <Name>AM-SaveRequest</Name>
+    </Step>
+    <Step>
+        <Condition>oauthV2.OA-VerifyAccessToken.fault.name == "keymanagement.service.invalid_access_token"</Condition>
+        <Name>AM-ExternalOAuthRequest</Name>
+    </Step>
+    <Step>
+        <Condition>oauthV2.OA-VerifyAccessToken.fault.name == "keymanagement.service.invalid_access_token"</Condition>
+        <Name>OA-GenerateExternalAccessToken</Name>
+    </Step>
+    <Step>
+        <Condition>oauthV2.OA-VerifyAccessToken.fault.name == "keymanagement.service.invalid_access_token"</Condition>
+        <Name>AM-RestoreRequest</Name>
+    </Step>
+</SharedFlow>

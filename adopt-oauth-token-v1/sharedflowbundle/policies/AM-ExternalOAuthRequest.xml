@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AM-ExternalOAuthRequest">
+    <AssignVariable>
+        <Name>oauth_external_authorization_status</Name>
+        <Value>true</Value>
+    </AssignVariable>
+    <Set>
+        <Headers>
+            <Header name="Content-Type">application/x-www-form-urlencoded</Header>
+        </Headers>
+        <FormParams>
+            <FormParam name="grant_type">password</FormParam>
+            <FormParam name="client_id">{client_id}</FormParam>
+            <FormParam name="client_secret">not_used</FormParam>
+            <FormParam name="username">not_used</FormParam>
+            <FormParam name="password">not_used</FormParam>
+        </FormParams>
+    </Set>
+</AssignMessage>

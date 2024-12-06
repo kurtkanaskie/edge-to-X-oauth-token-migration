@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout continueOnError="true" enabled="true" name="SC-ValidateToken">
+    <Request>
+        <Add>
+            <Headers>
+                <Header name="Authorization">Bearer {access_token}</Header>
+            </Headers>
+            <Verb>GET</Verb>
+        </Add>
+    </Request>
+    <Response>flow_validate_response</Response>
+    <HTTPTargetConnection>
+        <URL>https://api-test.kurtkanaskie.net/oauth/v1/token</URL>
+    </HTTPTargetConnection>
+</ServiceCallout>

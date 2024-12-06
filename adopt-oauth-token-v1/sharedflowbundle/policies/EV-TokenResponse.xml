@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="EV-TokenResponse">
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Source clearPayload="false">flow_validate_response</Source>
+    <JSONPayload>
+        <Variable name="client_id" type="string">
+            <JSONPath>$.client_id</JSONPath>
+        </Variable>
+        <Variable name="expires_in" type="string">
+            <JSONPath>$.expires_in</JSONPath>
+        </Variable>
+        <Variable name="refresh_token" type="string">
+            <JSONPath>$.refresh_token</JSONPath>
+        </Variable>
+        <Variable name="refresh_token_expires_in" type="string">
+            <JSONPath>$.refresh_token_expires_in</JSONPath>
+        </Variable>
+        <Variable name="externalUsername" type="string">
+            <JSONPath>$.externalUsername</JSONPath>
+        </Variable>
+        <Variable name="externalPassword" type="string">
+            <JSONPath>$.externalPassword</JSONPath>
+        </Variable>
+        <Variable name="externalAccessToken" type="string">
+            <JSONPath>$.externalAccessToken</JSONPath>
+        </Variable>
+        <Variable name="externalRefreshAccessToken" type="string">
+            <JSONPath>$.externalRefreshAccessToken</JSONPath>
+        </Variable>
+    </JSONPayload>
+</ExtractVariables>
