@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>apigee</groupId>
+  <artifactId>pingstatus-oauth-migration</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0</version>
+  <name>pingstatus-oauth-migration</name>
+  <description>OAuth Proxy pingstatus-oauth-v1 and shared flow adopt-oauth-token-v1. depends on oauth-v1, idp-v1-mock, pingstatus-oauth-v1 and pingstatus-v1-mock in X and oauth-v1, idp-v1-mock in Edge</description>
+  
+  <modules>
+    <module>adopt-oauth-token-v1</module>
+    <module>pingstatus-oauth-v1</module>
+  </modules>
+</project>
