@@ -34,15 +34,15 @@ Modify the existing Edge OAuth proxy to have a GET /token endpoint that validate
 Create a Shared Flow (zip file here: adopt-oauth-token-v1)
 - OAuth policy with operation VerifyAccessToken to validate the incoming token from Edge
 - If token exists but expired Raise Fault access_token_expired
-- Extract Variables to get access_token from. request
-- If token doesn't exist Service Callout to Edge OAuth proxy to validate the token
+- If token is invalid Extract Variables to get access_token from request
+- If token is invalid Service Callout to Edge OAuth proxy to validate the token
 - If not valid Raise Fault invalid_access_token
 - If valid Extract Variables to get access_token, refresh_token and expiry values
 - JavaScript policy to set expiry values in milliseconds
 - Assign Message to save original request
 - Assign Message to create OAuth request
-- - OAuth policy with operation GenerateAccessToken to 
-Assign Message to restore original request
+- OAuth policy with operation GenerateAccessToken to adopt token
+- Assign Message to restore original request
 
 Modify the OAuth protected proxy to use a Shared Flow callout prior to the OAuth VerifyAccessToken policy.
 
