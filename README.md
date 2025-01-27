@@ -53,7 +53,7 @@ You know the drill, modify the pom.xml files with your Apigee X details.
 Create proxy, configuration items, API products and app in one step
 ```
 export PROFILE=test
-mvn -P $PROFILE -Dbearer=$(gcloud auth print-access-token) install
+mvn -P $PROFILE -Dapigee.bearer=$(gcloud auth print-access-token) install
 ```
 
 ### Solution Details
